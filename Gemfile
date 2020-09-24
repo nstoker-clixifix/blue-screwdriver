@@ -16,6 +16,7 @@ group :development do
   gem 'guard'
   gem 'guard-brakeman'
   gem 'guard-bundler', require: false
+  gem 'guard-rack'
   gem 'guard-rspec', require: false
   gem 'guard-rubocop'
   # gem 'guard-shotgun' # guard init shotgun needed also shotgun?

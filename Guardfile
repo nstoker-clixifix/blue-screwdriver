@@ -16,6 +16,11 @@ group 'spec', halt_on_fail: true do
     files.each { |file| watch(helper.real_path(file)) }
   end
 
+  guard :rack, port: 9292 do
+    watch('Gemfile.lock')
+    watch(%r{^(config|lib|app)/.*})
+  end
+
   guard :rspec, cmd: 'bundle exec rspec' do
     require 'guard/rspec/dsl'
     dsl = Guard::RSpec::Dsl.new(self)
