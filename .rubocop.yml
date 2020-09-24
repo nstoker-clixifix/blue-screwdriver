@@ -2,3 +2,15 @@ inherit_from: .rubocop_todo.yml
 
 AllCops:
   NewCops: enable
+
+Metrics/BlockLength:
+  Exclude:
+    - Guardfile
+    - 'spec/unit/app/api_spec.rb'
+    - spec/acceptance/expense_tracker_api_spec.rb
+    - spec/integration/app/ledger_spec.rb
+
+Style/Documentation:
+  Exclude:
+    - 'spec/**/*'
+    - 'test/**/*'

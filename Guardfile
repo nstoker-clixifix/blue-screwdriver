@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+scope group: :specs
+
 # A stop on fail set of tests.
 group 'spec', halt_on_fail: true do
   guard :bundler do
@@ -59,7 +61,7 @@ group 'spec', halt_on_fail: true do
     end
   end
 
-  guard :rubocop, all_on_start: false do
+  guard :rubocop, all_on_start: false, cmd: 'rspec -D --display-style-guide' do
     watch(/.+\.rb$/)
     watch(%r{(?:.+/)?\.rubocop(?:_todo)?\.yml$}) { |m| File.dirname(m[0]) }
   end
