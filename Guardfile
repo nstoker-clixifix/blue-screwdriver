@@ -64,7 +64,7 @@ group 'spec', halt_on_fail: true do
     watch(%r{(?:.+/)?\.rubocop(?:_todo)?\.yml$}) { |m| File.dirname(m[0]) }
   end
 
-  guard :brakeman, run_on_start: false do
+  guard :brakeman, run_on_start: true, quiet: true, notifications: true do
     watch(%r{^app/.+\.(erb|haml|rhtml|rb)$})
     watch(%r{^config/.+\.rb$})
     watch(%r{^lib/.+\.rb$})
