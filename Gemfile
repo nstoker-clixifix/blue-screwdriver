@@ -13,6 +13,10 @@ gem 'sqlite3', '1.3.13'
 
 group :development do
   gem 'guard'
+  gem 'guard-brakeman'
   gem 'guard-bundler', require: false
   gem 'guard-rspec', require: false
+  gem 'guard-rubocop'
+  # gem 'guard-shotgun' # guard init shotgun needed also shotgun?
+  gem 'rubocop', require: false
 end
