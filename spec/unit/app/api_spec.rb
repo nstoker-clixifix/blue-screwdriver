@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require_relative '../../../app/api'
 require 'rack/test'
 
@@ -10,7 +12,7 @@ module ExpenseTracker
     end
 
     def parse_response(response)
-      return JSON.parse response
+      JSON.parse response
     end
 
     let(:ledger) { instance_double('ExpenseTracker::Ledger') }
@@ -20,12 +22,12 @@ module ExpenseTracker
         before do
           allow(ledger).to receive(:expenses_on)
             .with('2017-06-12')
-            .and_return(['expense_1', 'expense_2'])
+            .and_return(%w[expense_1 expense_2])
         end
 
         it 'returns the expense records as JSON' do
           get '/expenses/2017-06-12'
-          expect(parse_response(last_response.body)).to eq(['expense_1', 'expense_2'])
+          expect(parse_response(last_response.body)).to eq(%w[expense_1 expense_2])
         end
 
         it 'responds with a 200 (OK)' do
@@ -59,8 +61,8 @@ module ExpenseTracker
 
         before do
           allow(ledger).to receive(:record)
-          .with(expense)
-          .and_return(RecordResult.new(true, 417, nil))
+            .with(expense)
+            .and_return(RecordResult.new(true, 417, nil))
         end
 
         it 'returns the expense id' do
@@ -79,8 +81,8 @@ module ExpenseTracker
 
         before do
           allow(ledger).to receive(:record)
-          .with(expense)
-          .and_return(RecordResult.new(false,417,'Expense incomplete'))
+            .with(expense)
+            .and_return(RecordResult.new(false, 417, 'Expense incomplete'))
         end
 
         it 'returns an error message' do

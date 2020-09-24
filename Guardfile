@@ -1,19 +1,21 @@
-# A stop on fail set of tests. 
+# frozen_string_literal: true
+
+# A stop on fail set of tests.
 group 'spec', halt_on_fail: true do
   guard :bundler do
     require 'guard/bundler'
     require 'guard/bundler/verify'
     helper = Guard::Bundler::Verify.new
-  
+
     files = ['Gemfile']
     files += Dir['*.gemspec'] if files.any? { |f| helper.uses_gemspec?(f) }
-  
+
     # Assume files are symlinked from somewhere
     files.each { |file| watch(helper.real_path(file)) }
   end
 
-  guard :rspec, cmd: "bundle exec rspec" do
-    require "guard/rspec/dsl"
+  guard :rspec, cmd: 'bundle exec rspec' do
+    require 'guard/rspec/dsl'
     dsl = Guard::RSpec::Dsl.new(self)
 
     # Feel free to open issues for suggestions and improvements
@@ -29,7 +31,7 @@ group 'spec', halt_on_fail: true do
     dsl.watch_spec_files_for(ruby.lib_files)
 
     # Rails files
-    rails = dsl.rails(view_extensions: %w(erb haml slim))
+    rails = dsl.rails(view_extensions: %w[erb haml slim])
     dsl.watch_spec_files_for(rails.app_files)
     dsl.watch_spec_files_for(rails.views)
 
@@ -53,12 +55,12 @@ group 'spec', halt_on_fail: true do
     # Turnip features and steps
     watch(%r{^spec/acceptance/(.+)\.feature$})
     watch(%r{^spec/acceptance/steps/(.+)_steps\.rb$}) do |m|
-      Dir[File.join("**/#{m[1]}.feature")][0] || "spec/acceptance"
+      Dir[File.join("**/#{m[1]}.feature")][0] || 'spec/acceptance'
     end
   end
 
   guard :rubocop, all_on_start: false do
-    watch(%r{.+\.rb$})
+    watch(/.+\.rb$/)
     watch(%r{(?:.+/)?\.rubocop(?:_todo)?\.yml$}) { |m| File.dirname(m[0]) }
   end
 

@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 
 ENV['RACK_ENV'] = 'test'
 
@@ -19,11 +20,11 @@ ENV['RACK_ENV'] = 'test'
 RSpec.configure do |config|
   # From the tutorial, filter out framework warnings we don't need at the moment
   config.filter_gems_from_backtrace 'rack', 'rack-test', 'sequel', 'sinatra'
-  
+
   config.when_first_matching_example_defined(:db) do
     require_relative 'support/db'
   end
-  
+
   # rspec-expectations config goes here. You can use an alternate
   # assertion/expectation library such as wrong or the stdlib/minitest
   # assertions if you prefer.
@@ -54,8 +55,8 @@ RSpec.configure do |config|
   # triggering implicit auto-inclusion in groups with matching metadata.
   config.shared_context_metadata_behavior = :apply_to_host_groups
 
-# The settings below are suggested to provide a good initial experience
-# with RSpec, but feel free to customize to your heart's content.
+  # The settings below are suggested to provide a good initial experience
+  # with RSpec, but feel free to customize to your heart's content.
 
   # This allows you to limit a spec run to individual examples or groups
   # you care about by tagging them with `:focus` metadata. When nothing
@@ -67,7 +68,7 @@ RSpec.configure do |config|
   # Allows RSpec to persist some state between runs in order to support
   # the `--only-failures` and `--next-failure` CLI options. We recommend
   # you configure your source control system to ignore this file.
-  config.example_status_persistence_file_path = "spec/examples.txt"
+  config.example_status_persistence_file_path = 'spec/examples.txt'
 
   # Limits the available syntax to the non-monkey patched syntax that is
   # recommended. For more details, see:
@@ -87,7 +88,7 @@ RSpec.configure do |config|
     # Use the documentation formatter for detailed output,
     # unless a formatter has already been configured
     # (e.g. via a command-line flag).
-    config.default_formatter = "doc"
+    config.default_formatter = 'doc'
   end
 
   # Print the 10 slowest examples and example groups at the
