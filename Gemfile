@@ -20,5 +20,6 @@ group :development do
   gem 'guard-rspec', require: false
   gem 'guard-rubocop'
   # gem 'guard-shotgun' # guard init shotgun needed also shotgun?
+  gem 'guard-yard'
   gem 'rubocop', require: false
 end

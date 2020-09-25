@@ -78,3 +78,9 @@ group 'spec', halt_on_fail: true do
     watch('Gemfile')
   end
 end
+
+guard 'yard' do
+  watch(%r{app/.+\.rb})
+  watch(%r{lib/.+\.rb})
+  watch(%r{ext/.+\.c})
+end
