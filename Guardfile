@@ -79,7 +79,7 @@ group 'spec', halt_on_fail: true do
   end
 end
 
-guard 'yard' do
+guard 'yard', port: '8808' do
   watch(%r{app/.+\.rb})
   watch(%r{lib/.+\.rb})
   watch(%r{ext/.+\.c})
