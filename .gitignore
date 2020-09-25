@@ -8,6 +8,5 @@
 /pkg
 /coverage
 .yardoc
-/doc
 /spec/examples.txt
 *.db

@@ -23,3 +23,15 @@ To get expenses for a specific date:
 curl localhost:9292/expenses/2020-09-11 -w "\n"
 # curl localhost:9292/expenses --data '{"payee":"Gannymede", "amount": 1.25, "date":"2020-09-11"}' -w "\n"
 ```
+
+## Documentation
+
+Documentation [such as it is](doc/ExpenseTracker/index.html).
+
+The [YARD](https://github.com/lsegal/yard) and [yard-sinatra](https://github.com/rkh/yard-sinatra) gems were used to produce the documentation.
+
+To manually regenerate the documentation:
+
+```bash
+yard --plugin yard-sinatra --protected --private
+```
