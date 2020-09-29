@@ -35,3 +35,9 @@ To manually regenerate the documentation:
 ```bash
 yard --plugin yard-sinatra --protected --private
 ```
+
+## Lolcommits
+
+Just for fun, [lolcommits](https://lolcommits.github.io/) has been enabled on this repository.
+
+To enable (once the gem has been installed) type `lolcommits --enable`. To switch off `lolcommits --disable`.
