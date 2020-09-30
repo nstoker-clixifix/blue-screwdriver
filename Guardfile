@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+scope group: :specs
+
 # A stop on fail set of tests.
 group 'spec', halt_on_fail: true do
   guard :bundler do
@@ -12,6 +14,11 @@ group 'spec', halt_on_fail: true do
 
     # Assume files are symlinked from somewhere
     files.each { |file| watch(helper.real_path(file)) }
+  end
+
+  guard :rack, port: 9292 do
+    watch('Gemfile.lock')
+    watch(%r{^(config|lib|app)/.*})
   end
 
   guard :rspec, cmd: 'bundle exec rspec' do
@@ -59,7 +66,7 @@ group 'spec', halt_on_fail: true do
     end
   end
 
-  guard :rubocop, all_on_start: false do
+  guard :rubocop, all_on_start: false, cmd: 'rspec -D --display-style-guide' do
     watch(/.+\.rb$/)
     watch(%r{(?:.+/)?\.rubocop(?:_todo)?\.yml$}) { |m| File.dirname(m[0]) }
   end
@@ -70,4 +77,10 @@ group 'spec', halt_on_fail: true do
     watch(%r{^lib/.+\.rb$})
     watch('Gemfile')
   end
+end
+
+guard 'yard', port: '8808' do
+  watch(%r{app/.+\.rb})
+  watch(%r{lib/.+\.rb})
+  watch(%r{ext/.+\.c})
 end

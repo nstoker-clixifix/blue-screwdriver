@@ -4,7 +4,9 @@ require 'sinatra/base'
 require 'json'
 require_relative 'ledger'
 
+# An Expense Tracker
 module ExpenseTracker
+  # The API class
   class API < Sinatra::Base
     def initialize(ledger: Ledger.new)
       @ledger = ledger

@@ -2,9 +2,11 @@
 
 require_relative '../config/sequel'
 
+# Expense Tracker
 module ExpenseTracker
   RecordResult = Struct.new(:success?, :expense_id, :error_message)
 
+  # The ledger
   class Ledger
     def record(expense)
       unless expense.key?('payee')

@@ -12,11 +12,14 @@ gem 'sinatra', '2.0.0'
 gem 'sqlite3', '1.3.13'
 
 group :development do
+  gem 'growl'
   gem 'guard'
   gem 'guard-brakeman'
   gem 'guard-bundler', require: false
+  gem 'guard-rack'
   gem 'guard-rspec', require: false
   gem 'guard-rubocop'
   # gem 'guard-shotgun' # guard init shotgun needed also shotgun?
+  gem 'guard-yard'
   gem 'rubocop', require: false
 end
